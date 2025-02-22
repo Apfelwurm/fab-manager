@@ -1,5 +1,5 @@
 {
-    "image": "ghcr.io/rails/devcontainer/images/ruby:3.3.0",
+    "image": "ghcr.io/rails/devcontainer/images/ruby:3.2.2",
     "features": {
       "ghcr.io/devcontainers/features/docker-in-docker:2": {},
       "ghcr.io/rails/devcontainer/features/activestorage": {}
@@ -7,5 +7,9 @@
     "forwardPorts": [
       3000
     ],
-    "otherPortsAttributes": { "onAutoForward" : "ignore" }
+    "otherPortsAttributes": { "onAutoForward" : "ignore" },
+    "postCreateCommand": "sudo apt-get update && sudo apt-get install libpq-dev imagemagick -y && cat docker/development/hosts | sudo tee -a /etc/hosts  && mkdir -p .docker/elasticsearch/config && cp docker/development/docker-compose.yml .docker && cp setup/elasticsearch.yml .docker/elasticsearch/config && cp setup/log4j2.properties .docker/elasticsearch/config  && cd .docker  && docker-compose up -d"
+
   }
+
+ 
