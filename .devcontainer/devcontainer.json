@@ -1,0 +1,11 @@
+{
+    "image": "ghcr.io/rails/devcontainer/images/ruby:3.3.0",
+    "features": {
+      "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+      "ghcr.io/rails/devcontainer/features/activestorage": {}
+    },
+    "forwardPorts": [
+      3000
+    ],
+    "otherPortsAttributes": { "onAutoForward" : "ignore" }
+  }
