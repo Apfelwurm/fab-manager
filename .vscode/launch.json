@@ -1,0 +1,17 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Rails Server Debug (Ruby LSP)",
+      "type": "ruby_lsp",
+      "request": "attach",
+      "debugPort": 12345
+    },
+    {
+      "name": "Sidekiq Worker Debug (Ruby LSP)",
+      "type": "ruby_lsp",
+      "request": "attach",
+      "debugPort": 12346
+    }
+  ]
+}

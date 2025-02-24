@@ -1,7 +1,9 @@
 {
   "image": "ghcr.io/rails/devcontainer/images/ruby:3.2.2",
   "features": {
-    "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "dockerDefaultAddressPool": "base=172.22.0.0/16,size=24"
+    },
     "ghcr.io/rails/devcontainer/features/activestorage": {},
     "ghcr.io/devcontainers/features/node:1": {
       "version": "18.15.0",
@@ -19,5 +21,5 @@
   "otherPortsAttributes": {
     "onAutoForward": "ignore"
   },
-  "postCreateCommand": "sudo apt-get update && sudo apt-get install libpq-dev imagemagick postgresql-client -y && cat docker/development/hosts | sudo tee -a /etc/hosts  && mkdir -p .docker/elasticsearch/config && cp docker/development/docker-compose.yml .docker && cp setup/elasticsearch.yml .docker/elasticsearch/config && cp setup/log4j2.properties .docker/elasticsearch/config  && cd .docker  && mkdir -p postgresql && sudo chown -R 999:999 postgresql && docker-compose up -d && cd .. && . ${NVM_DIR}/nvm.sh && nvm use && gem install bundler && bundle install && yarn install && sudo cp config/database.yml.default config/database.yml && sudo cp env.example .env && rails db:schema:load && ADMIN_EMAIL='Admin@default.com' ADMIN_PASSWORD='ThisIsTh34DmiNPaSSwRD4..1.1.1' rails db:seed && rails fablab:es:build_stats && overcommit --install && mkdir -p tmp/pids && foreman s -p 5000"
+  "postCreateCommand": "sudo rm -rf .docker && sudo rm -rf node_modules && sudo rm -rf tmp && sudo rm -rf .env && sudo rm -rf config/database.yml && sudo rm -rf config/database.yml && bundler clean --force ; sudo apt-get update && sudo apt-get install libpq-dev imagemagick postgresql-client -y && cat docker/development/hosts | sudo tee -a /etc/hosts  && mkdir -p .docker/elasticsearch/config && sudo cp docker/development/docker-compose.yml .docker && sudo cp setup/elasticsearch.yml .docker/elasticsearch/config && sudo cp setup/log4j2.properties .docker/elasticsearch/config  && cd .docker  && mkdir -p postgresql && sudo chown -R 999:999 postgresql && docker-compose up -d && cd .. && . ${NVM_DIR}/nvm.sh && nvm use && gem install bundler && bundle install && yarn install && sudo cp config/database.yml.default config/database.yml && sudo cp env.example .env && sudo sed -i 's|fr-fr|de-de|g' .env && sudo sed -i 's|fr-FR|de-DE|g' .env && sudo sed -i 's|=french|=german|g' .env && sudo sed -i 's|=fr|=de|g' .env && docker-compose -f .docker/docker-compose.yml exec postgres /bin/bash -c \"psql -U postgres -c 'CREATE DATABASE fabmanager_development;'\" && docker-compose -f .docker/docker-compose.yml exec postgres /bin/bash -c \"psql -U postgres -c 'CREATE DATABASE fabmanager_test;'\" && rails db:schema:load && ADMIN_EMAIL='Admin@default.com' ADMIN_PASSWORD='ThisIsTh34DmiNPaSSwRD4..1.1.1' rails db:seed && rails fablab:es:build_stats && overcommit --install && mkdir -p tmp/pids && foreman s -p 5000"
 }

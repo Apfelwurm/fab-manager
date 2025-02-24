@@ -29,6 +29,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   # comment over to use visual debugger (eg. RubyMine), uncomment to use manual debugging
   # gem 'byebug'
+  gem 'debug'
   gem 'dotenv-rails'
   gem 'pry'
 end
