@@ -2,6 +2,31 @@
 
 ## Next release
 
+## v6.3.44 2025 March 20
+
+- Fix a bug: event start/end date is not correct in the event list if the daylight saving time
+
+## v6.3.43 2025 March 19
+
+- update upgrade.sh script to allow skip compile assets
+- Fix a bug: event start/end date is not correct in the event list if the daylight saving time
+
+## v6.3.42 2025 February 28
+
+- Fix a bug: unable to bulk update projects to openlab in rake task
+- [TODO DEPLOY] `rails fablab:openlab:bulk_export`
+- [TODO DEPLOY] `rails fablab:openlab:bulk_update`
+
+## v6.3.41 2025 February 26
+
+- Fix a bug: unable to sync projects with openprojects
+- [TODO DEPLOY] `rails fablab:openlab:bulk_export`
+- [TODO DEPLOY] `rails fablab:openlab:bulk_update`
+
+## v6.3.40 2025 February 24
+
+- Fix a bug: machine reservation time in my reservations is incorrect
+
 ## v6.3.39 2025 February 3
 
 - Fix a bug: unable to cancel a PayZen subscription
